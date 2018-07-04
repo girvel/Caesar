@@ -6,6 +6,7 @@ using Code.Systems.Prefabs;
 using Code.Systems.Sprites;
 using Imperium.Client;
 using Imperium.CommonData;
+using Province.Vector;
 using UnityEngine;
 using NetData = System.Collections.Generic.Dictionary<string, object>;
 
@@ -29,7 +30,7 @@ namespace Code.Systems.Net
             var size = new Vector(areaData.GetLength(0), areaData.GetLength(1));
                 
             Area.Current.Initialize(size);
-            foreach (var position in size)
+            foreach (var position in size.Range())
             {
                 var holder = Instantiate(PrefabManager.Current.Building);
                 PlacingSystem.Current.Move(holder.GetComponent<PositionComponent>(), position);

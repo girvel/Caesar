@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Code.Common.ResourceManaging
 {
-    public abstract class ResourceManager<T> : SingletonBehaviour<T> where T : ResourceManager<T>
+    public abstract class ResourceManager<T, TResource> : SingletonBehaviour<T> where T : ResourceManager<T, TResource>
     {
         protected override void Awake()
         {
@@ -24,6 +24,11 @@ namespace Code.Common.ResourceManaging
             {
                 field.SetValue((T) this, Resources.Load(prefix + ToResourceName(field.Name), field.FieldType));
             }
+        }
+
+        public TResource GetResource(string resourceName)
+        {
+            return (TResource) typeof(T).GetField(ToResourceName(resourceName)).GetValue(this);
         }
 
         private static string ToResourceName(string fieldName)

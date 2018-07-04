@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Code.Systems.Sprites
 {
     [ResourceDirectory("Sprites")]
-    public class SpriteManager : ResourceManager<SpriteManager>
+    public class SpriteManager : ResourceManager<SpriteManager, Sprite>
     {
         [Resource]
         public Sprite WoodenHouse, Forest;

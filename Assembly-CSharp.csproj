@@ -1,20 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>4</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{7CE87696-1B92-C1B4-428E-00A8DB1736CD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
@@ -38,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
@@ -50,48 +46,52 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Code\Common\Constants\Layer.cs" />
-    <Compile Include="Assets\Code\Common\ResourceManaging\ResourceAttribute.cs" />
-    <Compile Include="Assets\Code\Common\ResourceManaging\ResourceDirectoryAttribute.cs" />
-    <Compile Include="Assets\Code\Common\ResourceManaging\ResourceManager.cs" />
-    <Compile Include="Assets\Code\Common\SingletonBehaviour.cs" />
-    <Compile Include="Assets\Code\Systems\Camera\CameraController.cs" />
-    <Compile Include="Assets\Code\Systems\Net\ClientBehaviour.cs" />
-    <Compile Include="Assets\Code\Systems\Placing\Area.cs" />
-    <Compile Include="Assets\Code\Systems\Placing\PlacingSystem.cs" />
-    <Compile Include="Assets\Code\Systems\Placing\PositionComponent.cs" />
-    <Compile Include="Assets\Code\Systems\Prefabs\PrefabManager.cs" />
-    <Compile Include="Assets\Code\Systems\Sprites\SpriteManager.cs" />
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PlaymodeTestsRunner">
-      <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.HoloLens">
-      <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VR">
-      <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
-    </Reference>
-    <Reference Include="Caesar.Net">
-      <HintPath>E:/projects/Caesar/Assets/Dlls/Caesar.Net.dll</HintPath>
-    </Reference>
-    <Reference Include="Imperium.Client">
-      <HintPath>E:/projects/Caesar/Assets/Dlls/Imperium.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Imperium.CommonData">
-      <HintPath>E:/projects/Caesar/Assets/Dlls/Imperium.CommonData.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>E:/projects/Caesar/Assets/Dlls/Newtonsoft.Json.dll</HintPath>
-    </Reference>
+     <Compile Include="Assets\Code\Common\Constants\Layer.cs" />
+     <Compile Include="Assets\Code\Common\ResourceManaging\ResourceAttribute.cs" />
+     <Compile Include="Assets\Code\Common\ResourceManaging\ResourceDirectoryAttribute.cs" />
+     <Compile Include="Assets\Code\Common\ResourceManaging\ResourceManager.cs" />
+     <Compile Include="Assets\Code\Common\SingletonBehaviour.cs" />
+     <Compile Include="Assets\Code\Systems\Camera\CameraController.cs" />
+     <Compile Include="Assets\Code\Systems\Creating\Creator.cs" />
+     <Compile Include="Assets\Code\Systems\Net\ClientBehaviour.cs" />
+     <Compile Include="Assets\Code\Systems\Placing\Area.cs" />
+     <Compile Include="Assets\Code\Systems\Placing\PlacingSystem.cs" />
+     <Compile Include="Assets\Code\Systems\Placing\PositionComponent.cs" />
+     <Compile Include="Assets\Code\Systems\Prefabs\PrefabManager.cs" />
+     <Compile Include="Assets\Code\Systems\Sprites\SpriteManager.cs" />
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.PlaymodeTestsRunner">
+ <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VR">
+ <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+ <Reference Include="Caesar.Net">
+ <HintPath>E:/projects/Caesar/Assets/Dlls/Caesar.Net.dll</HintPath>
+ </Reference>
+ <Reference Include="Imperium.Client">
+ <HintPath>E:/projects/Caesar/Assets/Dlls/Imperium.Client.dll</HintPath>
+ </Reference>
+ <Reference Include="Imperium.CommonData">
+ <HintPath>E:/projects/Caesar/Assets/Dlls/Imperium.CommonData.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>E:/projects/Caesar/Assets/Dlls/Newtonsoft.Json.dll</HintPath>
+ </Reference>
+ <Reference Include="Province.Vector">
+ <HintPath>E:/projects/Caesar/Assets/Dlls/Province.Vector.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -101,4 +101,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>
