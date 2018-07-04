@@ -1,9 +1,8 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caesar", "Assembly-CSharp.csproj", "{7CE87696-1B92-C1B4-428E-00A8DB1736CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{7CE87696-1B92-C1B4-428E-00A8DB1736CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caesar", "Assembly-CSharp-Editor-firstpass.csproj", "{A81ABEDC-685F-6C5E-9A6A-AB734A347296}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{A81ABEDC-685F-6C5E-9A6A-AB734A347296}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

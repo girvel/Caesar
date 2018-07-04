@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using Caesar.Net;
 using Code.Common.Constants;
+using Code.Systems.Creating;
 using Code.Systems.Placing;
 using Code.Systems.Prefabs;
 using Code.Systems.Sprites;
@@ -32,24 +33,7 @@ namespace Code.Systems.Net
             Area.Current.Initialize(size);
             foreach (var position in size.Range())
             {
-                var holder = Instantiate(PrefabManager.Current.Building);
-                PlacingSystem.Current.Move(holder.GetComponent<PositionComponent>(), position);
-                holder.GetComponent<SpriteRenderer>().sortingLayerName = Layer.Holders;
-
-                if (areaData[position.X, position.Y] == "House")
-                {
-                    var currentObject = Instantiate(PrefabManager.Current.Building);
-                    currentObject.GetComponent<SpriteRenderer>().sprite = SpriteManager.Current.WoodenHouse;
-                    currentObject.GetComponent<SpriteRenderer>().sortingLayerName = Layer.Buildings;
-                    PlacingSystem.Current.Move(currentObject.GetComponent<PositionComponent>(), position);
-                }
-                else
-                {
-                    var currentObject = Instantiate(PrefabManager.Current.Building);
-                    currentObject.GetComponent<SpriteRenderer>().sprite = SpriteManager.Current.Forest;
-                    currentObject.GetComponent<SpriteRenderer>().sortingLayerName = Layer.Buildings;
-                    PlacingSystem.Current.Move(currentObject.GetComponent<PositionComponent>(), position);
-                }
+                Creator.CreateBuilding(areaData[position.X, position.Y], position);
             }
         }
     }

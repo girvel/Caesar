@@ -28,7 +28,12 @@ namespace Code.Common.ResourceManaging
 
         public TResource GetResource(string resourceName)
         {
-            return (TResource) typeof(T).GetField(ToResourceName(resourceName)).GetValue(this);
+            return (TResource) typeof(T).GetField(FromResourceName(resourceName)).GetValue(this);
+        }
+
+        public bool HasResource(string resourceName)
+        {
+            return typeof(T).GetField(FromResourceName(resourceName)) != null;
         }
 
         private static string ToResourceName(string fieldName)
@@ -42,6 +47,25 @@ namespace Code.Common.ResourceManaging
                             => current + (char.IsUpper(character) 
                                    ? " " + char.ToLower(character) 
                                    : character.ToString()));
+        }
+
+        private static string FromResourceName(string resourceName)
+        {
+            var result = string.Empty;
+
+            for (var i = 0; i < resourceName.Length; i++)
+            {
+                if (resourceName[i] == ' ' && i + 1 < resourceName.Length)
+                {
+                    result += char.ToUpper(resourceName[i + 1]);
+                    i++;
+                    continue;
+                }
+
+                result += resourceName[i];
+            }
+
+            return result;
         }
     }
 }

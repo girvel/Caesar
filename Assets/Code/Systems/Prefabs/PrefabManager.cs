@@ -7,6 +7,9 @@ namespace Code.Systems.Prefabs
     [ResourceDirectory("Prefabs")]
     public class PrefabManager : ResourceManager<PrefabManager, GameObject>
     {
-        [Resource] public GameObject Building;
+        [Resource] 
+        public GameObject 
+            Building,
+            Empty;
     }
 }
