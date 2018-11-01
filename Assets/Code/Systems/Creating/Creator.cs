@@ -11,24 +11,15 @@ namespace Code.Systems.Creating
     {
         public static void CreateBuilding(string name, Vector position)
         {
-            var container = Object.Instantiate(
-                PrefabManager.Current.Empty,
-                GameObject.FindWithTag(Tags.BuildingContainer).transform);
+            var building = Object.Instantiate(
+                PrefabManager.Current.Building,
+                GameObject.FindWithTag(Tags.GlobalBuildingContainer).transform);
 
-            container.name = name;
-            
-            var holder = Object.Instantiate(PrefabManager.Current.Building, container.transform);
-            PlacingSystem.Current.Move(holder.GetComponent<PositionComponent>(), position);
-            holder.GetComponent<SpriteRenderer>().sortingLayerName = Layer.Holders;
-            holder.name = "Holder";
-
-            if (!SpriteManager.Current.HasResource(name)) return;
-            
-            var building = Object.Instantiate(PrefabManager.Current.Building, container.transform);
-            building.GetComponent<SpriteRenderer>().sprite = SpriteManager.Current.GetResource(name);
-            building.GetComponent<SpriteRenderer>().sortingLayerName = Layer.Buildings;
+            building.name = name;
             PlacingSystem.Current.Move(building.GetComponent<PositionComponent>(), position); 
-            building.name = "Building";
+            
+            if (!SpriteManager.Current.HasResource(name)) return;
+            building.transform.GetComponent<SpriteRenderer>().sprite = SpriteManager.Current.GetResource(name);
         }
     }
 }

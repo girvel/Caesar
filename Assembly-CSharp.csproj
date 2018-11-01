@@ -63,6 +63,8 @@
     <Compile Include="Assets\Code\Systems\Placing\PlacingSystem.cs" />
     <Compile Include="Assets\Code\Systems\Placing\PositionComponent.cs" />
     <Compile Include="Assets\Code\Systems\Prefabs\PrefabManager.cs" />
+    <Compile Include="Assets\Code\Systems\Selection\SelectableComponent.cs" />
+    <Compile Include="Assets\Code\Systems\Selection\SelectionSystem.cs" />
     <Compile Include="Assets\Code\Systems\Sprites\SpriteManager.cs" />
     <Reference Include="UnityEngine.Analytics">
       <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>

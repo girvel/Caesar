@@ -3,6 +3,6 @@
     public static class Tags
     {
         public const string
-            BuildingContainer = "Building container";
+            GlobalBuildingContainer = "Building container";
     }
 }

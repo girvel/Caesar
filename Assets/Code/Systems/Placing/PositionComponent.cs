@@ -12,7 +12,7 @@ namespace Code.Systems.Placing
 
 		private void Start()
 		{
-			var placingSystem = FindObjectOfType<PlacingSystem>();
+			var placingSystem = PlacingSystem.Current;
 			placingSystem.Subjects.Add(this);
 			placingSystem.Move(this, Position);
 		}
