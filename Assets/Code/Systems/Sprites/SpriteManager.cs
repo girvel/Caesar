@@ -1,5 +1,4 @@
-﻿using Code.Common;
-using Code.Common.ResourceManaging;
+﻿using Code.Common.ResourceManaging;
 using UnityEngine;
 
 namespace Code.Systems.Sprites

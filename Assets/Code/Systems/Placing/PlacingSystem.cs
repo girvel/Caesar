@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
 using Code.Common;
-using Imperium.CommonData;
 using Province.Vector;
 using UnityEngine;
 
 namespace Code.Systems.Placing 
 {
-	public class PlacingSystem : SingletonBehaviour<PlacingSystem>
+	public class PlacingSystem : System<PlacingSystem, PositionComponent>
 	{
-		public List<PositionComponent> Subjects { get; set; }
-		
 		public Area Area { get; set; }
 
 		public double CellSize;
@@ -18,17 +15,31 @@ namespace Code.Systems.Placing
 
 		public void Move(PositionComponent component, Vector newPosition)
 		{
-            Area[component.Position].Remove(component);
+			Area[component.Position].Remove(component);
             component.Position = newPosition;
             Area[component.Position].Add(component);
 		}
+		
+		
+
+		public override void Register(PositionComponent subject)
+		{
+			Move(subject, subject.Position);
+			base.Register(subject);
+		}
+
+		public override void Unregister(PositionComponent component)
+		{
+			Area[component.Position].Remove(component);
+			base.Unregister(component);
+		}
 
 
+		
 		protected override void Awake()
 		{
 			base.Awake();
 			
-			Subjects = new List<PositionComponent>();
 			Area = Area.Current;
 		}
 		

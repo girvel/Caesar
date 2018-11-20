@@ -1,5 +1,4 @@
-﻿using Imperium.CommonData;
-using Province.Vector;
+﻿using Province.Vector;
 using UnityEngine;
 
 namespace Code.Systems.Placing 
@@ -12,9 +11,7 @@ namespace Code.Systems.Placing
 
 		private void Start()
 		{
-			var placingSystem = PlacingSystem.Current;
-			placingSystem.Subjects.Add(this);
-			placingSystem.Move(this, Position);
+			PlacingSystem.Current.Register(this);
 		}
 	}
 }

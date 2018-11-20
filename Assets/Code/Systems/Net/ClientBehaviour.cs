@@ -1,12 +1,8 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Caesar.Net;
-using Code.Common.Constants;
 using Code.Systems.Creating;
 using Code.Systems.Placing;
-using Code.Systems.Prefabs;
-using Code.Systems.Sprites;
-using Imperium.Client;
-using Imperium.CommonData;
 using Province.Vector;
 using UnityEngine;
 using NetData = System.Collections.Generic.Dictionary<string, object>;
@@ -33,7 +29,37 @@ namespace Code.Systems.Net
             Area.Current.Initialize(size);
             foreach (var position in size.Range())
             {
-                Creator.CreateBuilding(areaData[position.X, position.Y], position);
+                BuildingManipulator.CreateBuilding(areaData[position.X, position.Y], position);
+            }
+            
+            Debug.Log(NetManager.UpgradeBuilding(new Vector(1, 1), "Wooden house"));
+            Debug.Log(NetManager.UpgradeBuilding(new Vector(1, 2), "Wooden house"));
+        }
+
+        private readonly TimeSpan _newsDelay = TimeSpan.FromSeconds(1);
+        private TimeSpan _currentNewsDelay;
+
+        private void Update()
+        {
+            _currentNewsDelay += TimeSpan.FromSeconds(Time.deltaTime);
+
+            if (_currentNewsDelay >= _newsDelay)
+            {
+                _currentNewsDelay -= _newsDelay;
+                foreach (var news in NetManager.GetNews())
+                {
+                    var data = (NetData) news["info"];
+                    switch (news["type"].ToString())
+                    {
+                        case "OnEntityCreate":
+                            BuildingManipulator.CreateBuilding(data["name"].ToString(), (Vector) data["position"]);
+                            break;
+                        
+                        case "OnEntityDestroy":
+                            BuildingManipulator.DestroyBuilding(data["name"].ToString(), (Vector) data["position"]);
+                            break;
+                    }
+                }
             }
         }
     }

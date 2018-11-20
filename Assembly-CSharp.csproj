@@ -56,8 +56,9 @@
     <Compile Include="Assets\Code\Common\ResourceManaging\ResourceDirectoryAttribute.cs" />
     <Compile Include="Assets\Code\Common\ResourceManaging\ResourceManager.cs" />
     <Compile Include="Assets\Code\Common\SingletonBehaviour.cs" />
+    <Compile Include="Assets\Code\Common\System.cs" />
     <Compile Include="Assets\Code\Systems\Camera\CameraController.cs" />
-    <Compile Include="Assets\Code\Systems\Creating\Creator.cs" />
+    <Compile Include="Assets\Code\Systems\Creating\BuildingManipulator.cs" />
     <Compile Include="Assets\Code\Systems\Net\ClientBehaviour.cs" />
     <Compile Include="Assets\Code\Systems\Placing\Area.cs" />
     <Compile Include="Assets\Code\Systems\Placing\PlacingSystem.cs" />

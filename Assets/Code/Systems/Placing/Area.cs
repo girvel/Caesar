@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Imperium.CommonData;
 using Province.Vector;
 
 namespace Code.Systems.Placing
@@ -20,6 +19,7 @@ namespace Code.Systems.Placing
 
 
 
+        
         public void Initialize(Vector size)
         {
             Grid = new List<PositionComponent>[size.X, size.Y];
