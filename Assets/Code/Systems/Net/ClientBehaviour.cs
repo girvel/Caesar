@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using Caesar.Net;
-using Code.Systems.Creating;
+using Code.Common;
 using Code.Systems.Placing;
 using Province.Vector;
 using UnityEngine;
@@ -9,9 +9,9 @@ using NetData = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Code.Systems.Net
 {
-    public class ClientBehaviour : MonoBehaviour 
+    public class ClientBehaviour : MonoBehaviour
     {
-        public NetManager NetManager { get; set; }
+        public static NetManager NetManager { get; set; }
         
         private void Start() 
         {

@@ -3,10 +3,10 @@ using Code.Common.Constants;
 using Code.Systems.Placing;
 using Code.Systems.Prefabs;
 using Code.Systems.Sprites;
-using UnityEngine;
 using Province.Vector;
+using UnityEngine;
 
-namespace Code.Systems.Creating
+namespace Code.Common
 {
     public static class BuildingManipulator
     {
