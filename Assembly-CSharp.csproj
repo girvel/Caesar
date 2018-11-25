@@ -61,6 +61,7 @@
     <Compile Include="Assets\Code\Systems\Camera\CameraController.cs" />
     <Compile Include="Assets\Code\Systems\Console\Terminal.cs" />
     <Compile Include="Assets\Code\Systems\Net\ClientBehaviour.cs" />
+    <Compile Include="Assets\Code\Systems\Net\NewsContainer.cs" />
     <Compile Include="Assets\Code\Systems\Placing\Area.cs" />
     <Compile Include="Assets\Code\Systems\Placing\PlacingSystem.cs" />
     <Compile Include="Assets\Code\Systems\Placing\PositionComponent.cs" />

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Reflection;
 using Caesar.Net;
 using Code.Common;
 using Code.Systems.Placing;
@@ -34,6 +37,8 @@ namespace Code.Systems.Net
             
             Debug.Log(NetManager.UpgradeBuilding(new Vector(1, 1), "Wooden house"));
             Debug.Log(NetManager.UpgradeBuilding(new Vector(1, 2), "Wooden house"));
+
+            NetManager.AddResources();
         }
 
         private readonly TimeSpan _newsDelay = TimeSpan.FromSeconds(1);
@@ -48,16 +53,22 @@ namespace Code.Systems.Net
                 _currentNewsDelay -= _newsDelay;
                 foreach (var news in NetManager.GetNews())
                 {
+                    var method = typeof(NewsContainer).GetMethod(news["type"].ToString());
                     var data = (NetData) news["info"];
-                    switch (news["type"].ToString())
+
+                    try
                     {
-                        case "OnEntityCreate":
-                            BuildingManipulator.CreateBuilding(data["name"].ToString(), (Vector) data["position"]);
-                            break;
-                        
-                        case "OnEntityDestroy":
-                            BuildingManipulator.DestroyBuilding(data["name"].ToString(), (Vector) data["position"]);
-                            break;
+                        method.Invoke(
+                            null,
+                            method.GetParameters().Select(p => data[p.Name]).ToArray());
+                    }
+                    catch (TargetException ex)
+                    {
+                        Debug.LogError("News invokation error\n" + ex);
+                    }
+                    catch (KeyNotFoundException ex)
+                    {
+                        Debug.LogError("Wrong arguments in method NewsContainer." + method.Name + "\n" + ex);
                     }
                 }
             }
