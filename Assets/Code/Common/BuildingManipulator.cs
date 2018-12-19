@@ -3,6 +3,7 @@ using Code.Common.Constants;
 using Code.Systems.Placing;
 using Code.Systems.Prefabs;
 using Code.Systems.Sprites;
+using Imperium.CommonData;
 using Province.Vector;
 using UnityEngine;
 
@@ -10,17 +11,22 @@ namespace Code.Common
 {
     public static class BuildingManipulator
     {
-        public static void CreateBuilding(string name, Vector position)
+        public static void CreateBuilding(BuildingDto dto, Vector position)
         {
             var building = Object.Instantiate(
                 PrefabManager.Current.Building,
                 GameObject.FindWithTag(Tags.GlobalBuildingContainer).transform);
 
+            var name = dto.BuildingName + (dto.Temperature < 0 ? " (Snowy)" : "");
             building.name = name;
-            PlacingSystem.Current.Move(building.GetComponent<PositionComponent>(), position); 
-            
-            if (!SpriteManager.Current.HasResource(name)) return;
-            building.transform.GetComponent<SpriteRenderer>().sprite = SpriteManager.Current.GetResource(name);
+            PlacingSystem.Current.Move(building.GetComponent<PositionComponent>(), position);
+
+            var sprites = building.GetComponent<BuildingSprites>();
+
+            sprites.BuildingWeather.sprite = Sprites.GetBuildingWeatherSprite(dto.Temperature, dto.BuildingName, dto.TerrainName);
+            sprites.Building.sprite = Sprites.GetBuildingSprite(dto.BuildingName, dto.TerrainName);
+            sprites.TerrainWeather.sprite = Sprites.GetTerrainWeatherSprite(dto.Temperature, dto.TerrainName);
+            sprites.Terrain.sprite = Sprites.GetTerrainSprite(dto.TerrainName);
         }
 
         public static void DestroyBuilding(string name, Vector position)

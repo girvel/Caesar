@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using Code.Common;
+using Code.Systems.Interface;
+using Imperium.CommonData;
 using Province.Vector;
 using UnityEngine;
 
@@ -7,9 +9,9 @@ namespace Code.Systems.Net
 {
     public static class NewsContainer
     {
-        public static void OnEntityCreate(string name, Vector position)
+        public static void OnEntityCreate(BuildingDto dto, Vector position)
         {
-            BuildingManipulator.CreateBuilding(name, position);
+            BuildingManipulator.CreateBuilding(dto, position);
         }
 
         public static void OnEntityDestroy(string name, Vector position)
@@ -19,7 +21,7 @@ namespace Code.Systems.Net
 
         public static void OnResourcesChanged(float[] value)
         {
-            Debug.Log(value.Aggregate("", (sum, r) => sum + ", " + r).Substring(2));
+            Ui.ShowResources(value);
         }
     }
 }

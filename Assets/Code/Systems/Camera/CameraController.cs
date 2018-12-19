@@ -46,9 +46,9 @@ namespace Code.Systems.Camera
 
         private void CameraControlUpdate()
         {
-            if (Input.GetMouseButton(2) || Input.GetMouseButton(1))
+            if (UnityEngine.Input.GetMouseButton(2) || UnityEngine.Input.GetMouseButton(1))
             {
-                var path = PreviousMousePosition - Input.mousePosition;
+                var path = PreviousMousePosition - UnityEngine.Input.mousePosition;
 
                 transform.position +=
                     path.magnitude * ScrollingFactor
@@ -60,17 +60,17 @@ namespace Code.Systems.Camera
             }
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (Input.mouseScrollDelta.y != 0)
+            if (UnityEngine.Input.mouseScrollDelta.y != 0)
             {
                 ThisCamera.orthographicSize
                     = Mathf.Clamp(
                         ThisCamera.orthographicSize 
-                        * (Input.mouseScrollDelta.y < 0 ? ScalingFactor : 1 / ScalingFactor),
+                        * (UnityEngine.Input.mouseScrollDelta.y < 0 ? ScalingFactor : 1 / ScalingFactor),
                         ScaleMin,
                         ScaleMax);
             }
 
-            PreviousMousePosition = Input.mousePosition;
+            PreviousMousePosition = UnityEngine.Input.mousePosition;
         }
     }
 }

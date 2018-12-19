@@ -53,7 +53,10 @@ namespace Code.Systems.Placing
 						  subject.Position.X - subject.Position.Y,
 						  (float) (subject.Position.X + subject.Position.Y) / 2);
 
-				subject.GetComponent<SpriteRenderer>().sortingOrder = -(subject.Position.X + subject.Position.Y);
+				foreach (var spriteRenderer in subject.transform.GetComponentsInChildren<SpriteRenderer>())
+				{
+					spriteRenderer.sortingOrder = -(subject.Position.X + subject.Position.Y);
+				}
 			}
 		}
 	}

@@ -53,6 +53,7 @@
     <Compile Include="Assets\Code\Common\BuildingManipulator.cs" />
     <Compile Include="Assets\Code\Common\Constants\Layer.cs" />
     <Compile Include="Assets\Code\Common\Constants\Tags.cs" />
+    <Compile Include="Assets\Code\Common\Repeater.cs" />
     <Compile Include="Assets\Code\Common\ResourceManaging\ResourceAttribute.cs" />
     <Compile Include="Assets\Code\Common\ResourceManaging\ResourceDirectoryAttribute.cs" />
     <Compile Include="Assets\Code\Common\ResourceManaging\ResourceManager.cs" />
@@ -60,6 +61,10 @@
     <Compile Include="Assets\Code\Common\System.cs" />
     <Compile Include="Assets\Code\Systems\Camera\CameraController.cs" />
     <Compile Include="Assets\Code\Systems\Console\Terminal.cs" />
+    <Compile Include="Assets\Code\Systems\Input\IKeyboardReader.cs" />
+    <Compile Include="Assets\Code\Systems\Input\Keyboard.cs" />
+    <Compile Include="Assets\Code\Systems\Interface\Ui.cs" />
+    <Compile Include="Assets\Code\Systems\Interface\UiController.cs" />
     <Compile Include="Assets\Code\Systems\Net\ClientBehaviour.cs" />
     <Compile Include="Assets\Code\Systems\Net\NewsContainer.cs" />
     <Compile Include="Assets\Code\Systems\Placing\Area.cs" />
@@ -68,8 +73,8 @@
     <Compile Include="Assets\Code\Systems\Prefabs\PrefabManager.cs" />
     <Compile Include="Assets\Code\Systems\Selection\SelectableComponent.cs" />
     <Compile Include="Assets\Code\Systems\Selection\SelectionSystem.cs" />
-    <Compile Include="Assets\Code\Systems\Sprites\SpriteManager.cs" />
-    <Compile Include="Assets\Code\Systems\Ui\UiController.cs" />
+    <Compile Include="Assets\Code\Systems\Sprites\BuildingSprites.cs" />
+    <Compile Include="Assets\Code\Systems\Sprites\Sprites.cs" />
     <Reference Include="UnityEngine.Analytics">
       <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
     </Reference>
@@ -88,6 +93,9 @@
     <Reference Include="UnityEngine.VR">
       <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
     </Reference>
+    <Reference Include="BashDotNet">
+      <HintPath>E:/projects/Caesar/Assets/Dlls/BashDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="Caesar.Net">
       <HintPath>E:/projects/Caesar/Assets/Dlls/Caesar.Net.dll</HintPath>
     </Reference>
@@ -102,9 +110,6 @@
     </Reference>
     <Reference Include="Province.Vector">
       <HintPath>E:/projects/Caesar/Assets/Dlls/Province.Vector.dll</HintPath>
-    </Reference>
-    <Reference Include="BashDotNet">
-      <HintPath>E:/projects/Caesar/Assets/Dlls/BashDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

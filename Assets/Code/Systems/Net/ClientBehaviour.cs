@@ -34,42 +34,37 @@ namespace Code.Systems.Net
             {
                 BuildingManipulator.CreateBuilding(areaData[position.X, position.Y], position);
             }
-            
-            Debug.Log(NetManager.UpgradeBuilding(new Vector(1, 1), "Wooden house"));
-            Debug.Log(NetManager.UpgradeBuilding(new Vector(1, 2), "Wooden house"));
 
             NetManager.AddResources();
+            
+            Debug.Log(NetManager.UpgradeBuilding(new Vector(1, 1), "Wooden house"));
         }
-
-        private readonly TimeSpan _newsDelay = TimeSpan.FromSeconds(1);
-        private TimeSpan _currentNewsDelay;
 
         private void Update()
         {
-            _currentNewsDelay += TimeSpan.FromSeconds(Time.deltaTime);
+            Repeater.Every(TimeSpan.FromSeconds(1), ExecuteNews);
+        }
 
-            if (_currentNewsDelay >= _newsDelay)
+        private static void ExecuteNews()
+        {
+            foreach (var news in NetManager.GetNews())
             {
-                _currentNewsDelay -= _newsDelay;
-                foreach (var news in NetManager.GetNews())
-                {
-                    var method = typeof(NewsContainer).GetMethod(news["type"].ToString());
-                    var data = (NetData) news["info"];
+                var method = typeof(NewsContainer).GetMethod(news["type"].ToString());
+                var data = (NetData) news["info"];
 
-                    try
-                    {
-                        method.Invoke(
-                            null,
-                            method.GetParameters().Select(p => data[p.Name]).ToArray());
-                    }
-                    catch (TargetException ex)
-                    {
-                        Debug.LogError("News invokation error\n" + ex);
-                    }
-                    catch (KeyNotFoundException ex)
-                    {
-                        Debug.LogError("Wrong arguments in method NewsContainer." + method.Name + "\n" + ex);
-                    }
+                try
+                {
+                    method.Invoke(
+                        null,
+                        method.GetParameters().Select(p => data[p.Name]).ToArray());
+                }
+                catch (TargetException ex)
+                {
+                    Debug.LogError("News invokation error\n" + ex);
+                }
+                catch (KeyNotFoundException ex)
+                {
+                    Debug.LogError("Wrong arguments in method NewsContainer." + method.Name + "\n" + ex);
                 }
             }
         }
