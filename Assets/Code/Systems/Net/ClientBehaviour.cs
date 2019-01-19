@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Threading;
 using Caesar.Net;
 using Code.Common;
 using Code.Systems.Placing;
@@ -40,12 +41,24 @@ namespace Code.Systems.Net
 
         private void Update()
         {
-            Repeater.Every(TimeSpan.FromSeconds(1), ExecuteNews);
+            Repeater.Every(TimeSpan.FromSeconds(1), () => new Thread(GetNews).Start());
+            ExecuteNews();
         }
 
-        private static void ExecuteNews()
+        private NetData[] _currentNews = new NetData[0];
+        
+        private void GetNews()
         {
-            foreach (var news in NetManager.GetNews())
+            var news = NetManager.GetNews();
+            lock (_currentNews) _currentNews = news;
+        }
+
+        private void ExecuteNews()
+        {
+            NetData[] allNews;
+            lock (_currentNews) allNews = _currentNews;
+            
+            foreach (var news in allNews)
             {
                 var method = typeof(NewsContainer).GetMethod(news["type"].ToString());
                 var data = (NetData) news["info"];
@@ -65,6 +78,7 @@ namespace Code.Systems.Net
                     Debug.LogError("Wrong arguments in method NewsContainer." + method.Name + "\n" + ex);
                 }
             }
+            _currentNews = new NetData[0];
         }
     }
 }
