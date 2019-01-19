@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BashDotNet;
-using Caesar.Net;
 using Code.Common;
 using Code.Systems.Input;
 using Code.Systems.Net;
@@ -71,8 +70,28 @@ namespace Code.Systems.Console
                                 ClientBehaviour.NetManager.UpgradeBuilding(
                                     SelectionSystem.Current.Selection.GetComponent<PositionComponent>().Position,
                                     options["building"] ?? "Wooden house")
-                                    ? "Upgraded successfully\n"
-                                    : "Upgrade is impossible\n");
+                                    ? "Upgraded successfully.\n"
+                                    : "Upgrade is impossible.\n");
+                        }),
+                    new Command(
+                        "move",
+                        new[] {"delta"},
+                        new Option[0],
+                        (args, options) =>
+                        {
+                            var from = SelectionSystem.Current.Selection.GetComponent<PositionComponent>().Position;
+
+                            Vector delta;
+                            if (!Vector.TryParse(args["delta"], out delta))
+                            {
+                                WriteOutput("First argument \"delta\" should be of type Vector.\n");
+                                return;
+                            }
+
+                            WriteOutput(
+                                ClientBehaviour.NetManager.Move(from, from + delta)
+                                    ? "Movement began successfully.\n"
+                                    : "Something went wrong.\n");
                         }));
         }
 

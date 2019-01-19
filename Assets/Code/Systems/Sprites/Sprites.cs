@@ -1,4 +1,5 @@
 ﻿using Code.Common;
+using UnityEditor;
 using UnityEngine;
 
 namespace Code.Systems.Sprites
@@ -27,6 +28,11 @@ namespace Code.Systems.Sprites
         public static Sprite GetTerrainWeatherSprite(float temperature, string terrainName)
         {
             return temperature < 0 ? Resources.Load<Sprite>(@"Sprites\Terrains\Weather\Snow - " + terrainName) : null;
+        }
+
+        public static Sprite GetSquadSprite(string squadName)
+        {
+            return Resources.Load<Sprite>(@"Sprites\Squads\" + squadName);
         }
     }
 }

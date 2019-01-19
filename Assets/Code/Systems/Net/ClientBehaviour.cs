@@ -25,7 +25,7 @@ namespace Code.Systems.Net
             
             Debug.Log(loginSuccess ? "Logged in successfully" : "Authentication error"); 
             
-            var areaData = NetManager.GetArea();
+            var areaData = NetManager.GetVision().Grid;
 
             var size = new Vector(areaData.GetLength(0), areaData.GetLength(1));
                 
@@ -36,8 +36,6 @@ namespace Code.Systems.Net
             }
 
             NetManager.AddResources();
-            
-            Debug.Log(NetManager.UpgradeBuilding(new Vector(1, 1), "Wooden house"));
         }
 
         private void Update()

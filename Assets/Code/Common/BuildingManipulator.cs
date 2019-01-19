@@ -11,11 +11,17 @@ namespace Code.Common
 {
     public static class BuildingManipulator
     {
-        public static void CreateBuilding(BuildingDto dto, Vector position)
+        public static void CreateBuilding(PlaceDto dto, Vector position)
         {
             var building = Object.Instantiate(
                 PrefabManager.Current.Building,
                 GameObject.FindWithTag(Tags.GlobalBuildingContainer).transform);
+
+            if (dto == null)
+            {
+                building.name = "<nothing>";
+                return;
+            }
 
             var name = dto.BuildingName + (dto.Temperature < 0 ? " (Snowy)" : "");
             building.name = name;
@@ -27,11 +33,15 @@ namespace Code.Common
             sprites.Building.sprite = Sprites.GetBuildingSprite(dto.BuildingName, dto.TerrainName);
             sprites.TerrainWeather.sprite = Sprites.GetTerrainWeatherSprite(dto.Temperature, dto.TerrainName);
             sprites.Terrain.sprite = Sprites.GetTerrainSprite(dto.TerrainName);
+            sprites.Squad.sprite = Sprites.GetSquadSprite(dto.SquadName);
         }
 
-        public static void DestroyBuilding(string name, Vector position)
+        public static void DestroyBuilding(Vector position)
         {
-            var component = PlacingSystem.Current.Area[position].First(o => o.gameObject.name == name);
+            var component = PlacingSystem.Current.Area[position].FirstOrDefault();
+
+            if (component == null) return;
+            
             PlacingSystem.Current.Unregister(component);
             Object.Destroy(component.gameObject);
         }

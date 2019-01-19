@@ -9,14 +9,17 @@ namespace Code.Systems.Net
 {
     public static class NewsContainer
     {
-        public static void OnEntityCreate(BuildingDto dto, Vector position)
+        public static void OnVisionChanged(VisionDto vision)
         {
-            BuildingManipulator.CreateBuilding(dto, position);
-        }
+            Debug.Log("Vision is changed");
 
-        public static void OnEntityDestroy(string name, Vector position)
-        {
-            BuildingManipulator.DestroyBuilding(name, position);
+            var grid = vision.Grid;
+            
+            foreach (var position in new Vector(grid.GetLength(0), grid.GetLength(1)).Range())
+            {
+                BuildingManipulator.DestroyBuilding(position);
+                BuildingManipulator.CreateBuilding(grid.At(position), position);
+            }
         }
 
         public static void OnResourcesChanged(float[] value)
