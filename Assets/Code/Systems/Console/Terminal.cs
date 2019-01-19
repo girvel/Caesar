@@ -58,6 +58,25 @@ namespace Code.Systems.Console
                 = new Library(
                     1,
                     new Command(
+                        "help",
+                        new string[0],
+                        new Option[0],
+                        (args, options) =>
+                        {
+                            foreach (var command in CommandLibrary.Commands)
+                            {
+                                WriteOutput(
+                                    command.Name 
+                                    + command.PositionalArguments.Aggregate("", (sum, a) => sum + " <" + a + ">") 
+                                    + command.Options.Aggregate("", 
+                                        (sum, o) => sum 
+                                                    + " <-" + o.ShortName 
+                                                    + "/--" + o.LongName 
+                                                    + " [" + o.Name + "]>")
+                                    + "\n");
+                            }
+                        }),
+                    new Command(
                         "upgrade",
                         new string[0],
                         new[]
