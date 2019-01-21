@@ -26,15 +26,14 @@ namespace Code.Systems.Net
             
             Debug.Log(loginSuccess ? "Logged in successfully" : "Authentication error"); 
             
-            var areaData = NetManager.GetVision().Grid;
+            var vision = NetManager.GetVision();
 
-            var size = new Vector(areaData.GetLength(0), areaData.GetLength(1));
-                
+            var size = vision.Grid.Size();
+            
             Area.Current.Initialize(size);
-            foreach (var position in size.Range())
-            {
-                BuildingManipulator.CreateBuilding(areaData[position.X, position.Y], position);
-            }
+            BuildingManipulator.InitializeBuildingsGrid(size);
+            
+            NewsContainer.OnVisionChanged(vision);
 
             NetManager.AddResources();
         }

@@ -11,7 +11,7 @@ namespace Code.Systems.Placing
         
         public List<PositionComponent>[,] Grid { get; set; }
 
-        public List<PositionComponent> this [Vector position]
+        public List<PositionComponent> this[Vector position]
         {
             get { return Grid[position.X, position.Y]; }
             set { Grid[position.X, position.Y] = value; }

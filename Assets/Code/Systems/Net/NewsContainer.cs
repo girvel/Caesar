@@ -15,10 +15,20 @@ namespace Code.Systems.Net
 
             var grid = vision.Grid;
             
-            foreach (var position in new Vector(grid.GetLength(0), grid.GetLength(1)).Range())
+            foreach (var position in grid.Size().Range())
             {
-                BuildingManipulator.DestroyBuilding(position);
-                BuildingManipulator.CreateBuilding(grid.At(position), position);
+                if (!vision.Visibility.GetAt(position))
+                {
+                    BuildingManipulator.HideBuilding(position);
+                    continue;
+                }
+                
+                if (grid.GetAt(position) == null)
+                {
+                    continue;
+                }
+                
+                BuildingManipulator.SetBuilding(grid.GetAt(position), position);
             }
         }
 
