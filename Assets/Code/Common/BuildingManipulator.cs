@@ -40,6 +40,7 @@ namespace Code.Common
             {
                 renderer.color = new Color(0.8f, 0.8f, 0.8f);
             }
+            
             sprites.Squad.sprite = null;
         }
         

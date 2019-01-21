@@ -20,7 +20,7 @@ namespace Code.Systems.Net
         private void Start() 
         {
             NetManager = new NetManager();
-            NetManager.Connect(new IPEndPoint (IPAddress.Parse ("192.168.0.100"), 7999));
+            NetManager.Connect(new IPEndPoint(IPAddress.Parse("192.168.0.100"), 7999));
             
             var loginSuccess = NetManager.Login("", "");
             
