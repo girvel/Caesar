@@ -111,6 +111,34 @@ namespace Code.Systems.Console
                                 ClientBehaviour.NetManager.Move(from, from + delta)
                                     ? "Movement began successfully.\n"
                                     : "Something went wrong.\n");
+                        }),
+                    new Command(
+                        "research",
+                        new[] {"name"},
+                        new Option[0],
+                        (args, options) =>
+                        {
+                            WriteOutput(
+                                ClientBehaviour.NetManager.BeginResearch(args["name"])
+                                    ? "Research started successfully\n"
+                                    : "You can not research this\n");
+                        }),
+                    new Command(
+                        "count_researches",
+                        new string[0],
+                        new Option[0],
+                        (args, options) =>    
+                        {
+                            WriteOutput(
+                                ClientBehaviour.NetManager.GetTechnologiesCount().ToString() + "\n");
+                        }),
+                    new Command(
+                        "clear",
+                        new string[0],
+                        new Option[0],
+                        (args, options) =>
+                        {
+                            TerminalText.text = "";
                         }));
         }
 
