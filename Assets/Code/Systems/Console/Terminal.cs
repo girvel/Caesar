@@ -49,6 +49,10 @@ namespace Code.Systems.Console
         
         public Library CommandLibrary { get; set; }
 
+        private static Vector Selection
+        {
+            get { return SelectionSystem.Current.Selection.GetComponent<PositionComponent>().Position; }
+        }
 
         protected override void Awake()
         {
@@ -87,7 +91,7 @@ namespace Code.Systems.Console
                         {
                             WriteOutput(
                                 ClientBehaviour.NetManager.UpgradeBuilding(
-                                    SelectionSystem.Current.Selection.GetComponent<PositionComponent>().Position,
+                                    Selection,
                                     options["building"] ?? "Wooden house")
                                     ? "Upgraded successfully.\n"
                                     : "Upgrade is impossible.\n");
@@ -98,7 +102,7 @@ namespace Code.Systems.Console
                         new Option[0],
                         (args, options) =>
                         {
-                            var from = SelectionSystem.Current.Selection.GetComponent<PositionComponent>().Position;
+                            var from = Selection;
 
                             Vector delta;
                             if (!Vector.TryParse(args["delta"], out delta))
@@ -139,6 +143,20 @@ namespace Code.Systems.Console
                         (args, options) =>
                         {
                             TerminalText.text = "";
+                        }),
+                    new Command(
+                        "attack",
+                        new[] {"delta"},
+                        new Option[0],
+                        (args, options) =>
+                        {
+                            Vector delta;
+                            WriteOutput(
+                                Vector.TryParse(args["delta"], out delta)
+                                    ? ClientBehaviour.NetManager.Attack(Selection, Selection + delta)
+                                        ? "Attacked sucessfully\n"
+                                        : "You can not attack\n"
+                                    : "First argument \"delta\" should be of type Vector.\n");
                         }));
         }
 
