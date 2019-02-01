@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading;
 using Caesar.Net;
 using Code.Common;
+using Code.Systems.Interface.Elements;
 using Code.Systems.Placing;
 using Province.Vector;
 using UnityEngine;
@@ -17,8 +18,10 @@ namespace Code.Systems.Net
     {
         public static NetManager NetManager { get; set; }
         
-        private void Start() 
+        private void Start()
         {
+            MainPanel.Current.Text = "Hello,\n\n\n\n\nworld!";
+            
             NetManager = new NetManager();
             NetManager.Connect(new IPEndPoint(IPAddress.Parse("192.168.0.100"), 7999));
             

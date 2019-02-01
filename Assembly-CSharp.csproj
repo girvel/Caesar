@@ -63,6 +63,9 @@
     <Compile Include="Assets\Code\Systems\Console\Terminal.cs" />
     <Compile Include="Assets\Code\Systems\Input\IKeyboardReader.cs" />
     <Compile Include="Assets\Code\Systems\Input\Keyboard.cs" />
+    <Compile Include="Assets\Code\Systems\Interface\Elements\Fixator.cs" />
+    <Compile Include="Assets\Code\Systems\Interface\Elements\MainPanel.cs" />
+    <Compile Include="Assets\Code\Systems\Interface\Elements\Panel.cs" />
     <Compile Include="Assets\Code\Systems\Interface\Ui.cs" />
     <Compile Include="Assets\Code\Systems\Interface\UiController.cs" />
     <Compile Include="Assets\Code\Systems\Net\ClientBehaviour.cs" />
