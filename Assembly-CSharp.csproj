@@ -78,6 +78,7 @@
     <Compile Include="Assets\Code\Systems\Selection\SelectionSystem.cs" />
     <Compile Include="Assets\Code\Systems\Sprites\BuildingSprites.cs" />
     <Compile Include="Assets\Code\Systems\Sprites\Sprites.cs" />
+    <None Include="Assets\Resources\Texts\Buildings descriptions RU.txt" />
     <Reference Include="UnityEngine.Analytics">
       <HintPath>E:/soft64/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
     </Reference>

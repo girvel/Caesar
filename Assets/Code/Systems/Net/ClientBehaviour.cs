@@ -20,8 +20,6 @@ namespace Code.Systems.Net
         
         private void Start()
         {
-            MainPanel.Current.Text = "Hello,\n\n\n\n\nworld!";
-            
             NetManager = new NetManager();
             NetManager.Connect(new IPEndPoint(IPAddress.Parse("192.168.0.100"), 7999));
             

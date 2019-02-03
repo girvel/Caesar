@@ -1,4 +1,5 @@
 ﻿using Code.Common;
+using Code.Systems.Interface.Elements;
 
 namespace Code.Systems.Selection
 {
@@ -18,6 +19,7 @@ namespace Code.Systems.Selection
             }
             
             Preselection = target;
+            MainPanel.Current.RefreshState();
 
             if (Preselection != null && Selection != Preselection)
             {
